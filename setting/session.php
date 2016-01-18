@@ -15,6 +15,9 @@ if (isset($_SESSION['role']))
    {
        echo "Selamat Datang<br/>".$_SESSION['nama'];
    }
+   elseif ($_SESSION['role']=="3") {
+   	echo "Selamat Datang<br/>".$_SESSION['nama'];
+   }
 }
 if (!isset($_SESSION['role']))
 {

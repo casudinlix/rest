@@ -39,13 +39,13 @@ if (isset($_POST['login'])=='LOGIN') {
 	$pass=md5($_POST['pass']);
 
 	$cari = $conn->query("SELECT * FROM login WHERE username='$username' AND password='$pass'");
-	
+	$row = $cari->fetch_assoc();
 	if ($cari->num_rows > 0) {
 
-		$_SESSION['id']=['id'];
-		$_SESSION['nama']=['nama'];
-		$_SESSION['username']=['username'];
-		$_SESSION['role']=['role'];
+		$_SESSION['id']=$row['id'];
+		$_SESSION['nama']=$row['nama'];
+		$_SESSION['username']=$row['username'];
+		$_SESSION['role']=$row['role'];
 		header('location:cek.php');
 	}else{
 		header('location:index.php?Error="Salah"');
