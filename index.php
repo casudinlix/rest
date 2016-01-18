@@ -39,7 +39,7 @@ if (isset($_POST['login'])=='LOGIN') {
 	$pass=md5($_POST['pass']);
 
 	$cari = $conn->query("SELECT * FROM login WHERE username='$username' AND password='$pass'");
-	$row = $cari->fetch_assoc();
+	$row = $cari->fetch_array();
 	if ($cari->num_rows > 0) {
 
 		$_SESSION['id']=$row['id'];
@@ -47,9 +47,8 @@ if (isset($_POST['login'])=='LOGIN') {
 		$_SESSION['username']=$row['username'];
 		$_SESSION['role']=$row['role'];
 		header('location:cek.php');
-	}else{
-		header('location:index.php?Error="Salah"');
 	}
+	
 
 }
 
