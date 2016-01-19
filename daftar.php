@@ -16,7 +16,9 @@
     <label class="detik">Nama Lengkap</label><br>
     <input class="input" type="text" name="nama" placeholder="Masukkan Nama Lengkap"><br>
     <label class="detik">Password</label><br>
-    <input class="input" type="password" name="pass" placeholder=""><br>
+    <input class="input" type="password" name="pass1" placeholder=""><br>
+    <label class="detik">Konfirmasi Password</label><br>
+    <input class="input" type="password" name="pass2" placeholder=""><br>
 	<button type="submit" name="submit" class="btn">Daftar</button>
 </form>
 </div>
