@@ -7,23 +7,59 @@
 </head>	
 <body>
 <center>
-<div id="form">
-	<form method="post" action="mail.php" class="form-horizontal">
-	<label class="detik">User Name</label><br>
-	<input class="input" type="text" name="username" placeholder="Masukkan Username"><br>
-    <label class="detik">Email Anda</label><br>
-    <input class="input" type="text" name="email" placeholder="Masukkan Email Anda"><br>
-    <label class="detik">Nama Lengkap</label><br>
-    <input class="input" type="text" name="nama" placeholder="Masukkan Nama Lengkap"><br>
-    <label class="detik">Password</label><br>
-    <input class="input" type="password" name="pass1" placeholder=""><br>
-    <label class="detik">Konfirmasi Password</label><br>
-    <input class="input" type="password" name="pass2" placeholder=""><br>
-	<button type="submit" name="submit" class="btn">Daftar</button>
+<form action="mail.php" method="POST" accept-charset="utf-8">
+	<table>
+
+<tr>
+
+<td>Username: </td>
+</tr>
+<tr><td><input type="text" name="username">
+</td>
+</tr>
+
+<tr>
+<td>Email: </td>
+
+</tr>
+<tr><td><input type="text" name="email">
+</td>
+</tr>
+
+<tr>
+<td>Nama Lengkap:</td>
+</tr>
+
+
+<td> <input type="text" name="nama">
+</td>
+</tr>
+
+<tr>
+<td>Password: 
+</td>
+</tr>
+<tr>
+<td>
+<input type="password" name="pass1">
+</td>
+</tr>
+
+<tr>
+
+<td>Konfirmasi Password:</td>
+</tr>
+<tr>
+<td>
+ <input type="password" name="pass2">
+</td>
+</tr>
+
+
+
+	</table>
+	<input type="submit" name="submit" value="Daftar">
 </form>
-</div>
-<div id="mk-link">
-	<a class="link" href="index.php" title="HOME">Back to Site</a>
 </div>
 </body>
 </html>

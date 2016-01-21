@@ -2,6 +2,13 @@
 // memulai session
 session_start();
 
+if (isset($_SESSION['confirm'])){
+
+	if ($_SESSION['confirm']=="N") {
+		die("Akun Anda Belum AKTIF<a href='login.php' >LOGIN</a>");
+		
+	}
+}
 if (isset($_SESSION['role']))
 {
  // jika level administrator

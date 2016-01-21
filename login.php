@@ -16,7 +16,7 @@ session_start()
 	<form action="" method="POST" accept-charset="utf-8">
 		<table>
 		<tr>
-		<td>Username</td>
+		<td>Email</td>
 		<td><input type="teks" name="username" value="" placeholder="Username"></td>
 		</tr>
 
@@ -45,6 +45,7 @@ if (isset($_POST['login'])=='LOGIN') {
 		$_SESSION['id']=$row['id'];
 		$_SESSION['nama']=$row['nama'];
 		$_SESSION['username']=$row['username'];
+		$_SESSION['confirm']=$row['confirm'];
 		$_SESSION['role']=$row['role'];
 		header('location:cek.php');
 	}
