@@ -18,11 +18,16 @@ include_once '../setting/session.php';
 </head>
 <body>
 <?php
-	 $query_pelanggan = "SELECT id_pelanggan FROM pelanggan";
+if (isset($_GET['profil'])) {
+	$id = $_GET['id_pelanggan'];
+}
+
+
+	 $query_pelanggan = "SELECT * FROM pelanggan WHERE id_pelanggan='".$_SESSION['id']."'";
 	 $hasil = $conn->query($query_pelanggan);
 	 if ($hasil->num_rows > 0) {
 	 	while ($data = $hasil->fetch_assoc()) {
-	 		echo "<a href='profil.php?$data[id_pelanggan]' title=''>Frofil</a>";
+	 		echo "<a href=profil.php?id=".$data['id_pelanggan']."=".$_SESSION['nama'].">Profil</a>";
 	 	}
 	 }
 	 	

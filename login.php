@@ -45,6 +45,7 @@ if (isset($_POST['login'])=='LOGIN') {
 		$_SESSION['id']=$row['id'];
 		$_SESSION['nama']=$row['nama'];
 		$_SESSION['username']=$row['username'];
+		$_SESSION['id_pelanggan']=['id_pelanggan'];
 		$_SESSION['confirm']=$row['confirm'];
 		$_SESSION['role']=$row['role'];
 		header('location:cek.php');
