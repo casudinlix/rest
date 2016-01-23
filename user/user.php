@@ -22,7 +22,7 @@ include_once '../setting/session.php';
 	 $hasil = $conn->query($query_pelanggan);
 	 if ($hasil->num_rows > 0) {
 	 	while ($data = $hasil->fetch_assoc()) {
-	 		echo $data['id_pelanggan'];
+	 		echo "<a href='profil.php?$data[id_pelanggan]' title=''>Frofil</a>";
 	 	}
 	 }
 	 	
