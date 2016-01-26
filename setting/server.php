@@ -5,4 +5,5 @@ if (mysql_errno()) {
 }
 
 $url ="http://127.0.0.1/TA";
+define( 'MAIN', dirname(__FILE__) );
 ?>

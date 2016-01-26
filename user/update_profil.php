@@ -1,4 +1,5 @@
-<?php 
+
+<?php
 require '../setting/server.php';
 require'../setting/session.php';
 
@@ -26,37 +27,31 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
  	
  	<table>
 <tr>
-<td>ID Anda :<input type="teks" name="id" value=<?php echo $data['id']; ?> disabled> </td>
+<td>ID Anda :<input type="teks" name="id" value="<?php echo $data['id'];?>" disabled></td>
 
 </tr>
 
 
 
 <tr>
-<td>Nama Lengkap Anda :<input type="teks" name="nama" value=<?php echo $data['nama'] ?> disabled> </td>
+<td>Nama Lengkap Anda :<input type="teks" name="nama" value=<?php echo $data['nama'] ?> > </td>
 </tr>
 <tr>
-<td>Email :<input type="text" name="email" value=<?php echo $data['email'] ?> disabled> </td>
+<td>Email :<input type="text" name="email" value=<?php echo $data['email'] ?> > </td>
 </tr>
 <tr>
-<td>Alamat :<input type="text" name="email" value=<?php echo $data['alamat'] ?> disabled> </td>
+<td>Alamat :<input type="text" name="alamat" value=<?php echo $data['alamat'] ?> > </td>
 </tr>
 <tr>
-<td>No Telphon :<input type="teks" name="tlp" value=<?php echo $data['tlp'] ?> disabled>  </td>
+<td>No Telphon :<input type="teks" name="tlp" value=<?php echo $data['tlp'] ?> >  </td>
 </tr>
-<tr>
-<td>foto :<img src=<?php echo $data['foto'] ?> ; alt=""></tr>
+
+
+</tr>
  	</table>
-<?php 
- 	echo "<a href=update.php?id=".$data['id']."=".$_SESSION['nama']. ">Edit Data</a>";
- 	?>
- 	||
- 	<?php 
- 	echo "<a href=pass.php?id=".$data['id']."=".$_SESSION['nama']. ">Edit Password</a>";
- 	?>
- 	
+<input type="submit" name="update" value="Update">
  </form>
- 	<a href="admin.php" title="HOME">HOME</a>
+ 	<a href="user.php" title="HOME">HOME</a>
  </body>
  </html>
 
@@ -69,5 +64,13 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
 	move_uploaded_file($tmp_file, 'foto/'.$nama_file);
 */
 	 ?>
+
+
+
+
+
+
+
+
 
 

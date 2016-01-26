@@ -23,11 +23,12 @@ if (isset($_GET['profil'])) {
 }
 
 
-	 $query_pelanggan = "SELECT * FROM pelanggan WHERE id_pelanggan='".$_SESSION['id']."'";
+	 $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."' LIMIT 1";
 	 $hasil = $conn->query($query_pelanggan);
 	 if ($hasil->num_rows > 0) {
 	 	while ($data = $hasil->fetch_assoc()) {
-echo "<a href=profil.php?id=".$data['id_pelanggan']."=".$_SESSION['nama'].">Profil</a>";	 	}
+	 		echo "<a href=profil.php?id=".$data['id']."=".$_SESSION['nama'].">Profil</a>";
+	 	}
 	 }
 	 	
 	  ?>

@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
 	$username =$_POST['username'];
 	$email = $_POST['email'];
 	$nama = $_POST['nama'];
-	$pass1= md5($_POST['pass1']);
-	$pass2= md5($_POST['pass2']);
+	$pass1= md5 (trim($_POST['pass1']));
+	$pass2= md5 (trim($_POST['pass2']));
 	
 
 	//cek Validasi
