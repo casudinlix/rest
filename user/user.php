@@ -19,7 +19,7 @@ include_once '../setting/session.php';
 <body>
 <?php
 if (isset($_GET['profil'])) {
-	$id = $_GET['id_pelanggan'];
+	$id = $_GET['id'];
 }
 
 

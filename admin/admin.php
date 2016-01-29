@@ -27,7 +27,9 @@ if (isset($_GET['profil'])) {
 	 $hasil = $conn->query($query_pelanggan);
 	 if ($hasil->num_rows > 0) {
 	 	while ($data = $hasil->fetch_assoc()) {
-	 		echo "<a href=profil.php?id=".$data['id']."=".$_SESSION['nama'].">Profil</a>";
+	 		echo "<a href=profil.php?id=".$data['id']."=".$_SESSION['nama'].">Profil</a>"; 
+	 		echo "&nbsp &nbsp &nbsp||&nbsp &nbsp &nbsp;";
+	 		echo "<a href=pass.php?id=".$data['id']."=".$_SESSION['nama'].">Rubah Password</a>";
 	 	}
 	 }
 	 	

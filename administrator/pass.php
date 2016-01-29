@@ -67,5 +67,5 @@ require'../setting/session.php';
 			?>
 
 			<?php 
- 	echo "<a href=profil.php?id=".$_SESSION['id']. ">Profil</a>";
+ 	echo "<a href=profil.php?id=".$data['id']."=".$_SESSION['nama']. ">Profil</a>";
  	?>
