@@ -23,7 +23,7 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
  </head>
  <body>
  <form action="../lib/update_u.php" method="POST" accept-charset="utf-8">
- 	<img src=<?php echo $data['foto'] ?> ; alt="">
+ 	<img src=<?php echo $data['foto'] ?> ; alt="" width=250 heigth=150>
  	<table>
 <tr>
 <td>ID &nbsp;:&nbsp; <?php echo $data['id']; ?> </td>
