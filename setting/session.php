@@ -13,7 +13,7 @@ if (isset($_SESSION['role']))
    // jika kondisi level user maka akan diarahkan ke halaman lain
    else if ($_SESSION['role'] == "2")
    {
-       echo "Selamat Datang<br/>".$_SESSION['nama'];
+       echo "Selamat Datang &nbsp;".$_SESSION['nama'];
    }
    elseif ($_SESSION['role']=="3") {
    	echo "Selamat Datang<br/>".$_SESSION['nama'];
