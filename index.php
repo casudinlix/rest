@@ -31,3 +31,4 @@ if ($query->num_rows > 0) {
 }
 }
    ?>
+   <a href=login.php>Login</a>
