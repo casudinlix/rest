@@ -17,20 +17,22 @@ $id =$_GET['id'];
 	$terjual =$_POST['terjual'];
 	$diskon =$_POST['diskon'];
 $foto= $_FILES['gambar']['name'];
+$acak = rand(1,99);
 
+$unic = $acak.$foto;
 $u=$conn->query("SELECT * FROM produk WHERE id_produk='$id'");
 
 $us=$u->fetch_array();
 if(file_exists("../../produk/".$us['gambar'])){
 	unlink("../../produk/".$us['gambar']);
-	move_uploaded_file($_FILES['gambar']['tmp_name'], "../../produk/".$_FILES['gambar']['name']);
+	move_uploaded_file($_FILES['gambar']['tmp_name'],"../../produk/".$acak.$_FILES['gambar']['name']);
 	$query = "INSERT INTO produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi,harga_jual ,stock, berat,tgl_masuk, gambar, diskon)
-	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$foto','$diskon')";
+	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$unic','$diskon')";
 	$hasil = $conn->query($query);
 }else{
-	move_uploaded_file($_FILES['gambar']['tmp_name'], "../../produk/".$_FILES['gambar']['name']);
+	move_uploaded_file($_FILES['gambar']['tmp_name'], "../../produk/".$acak.$_FILES['gambar']['name']);
 	$query = "INSERT INTO produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi,harga_jual ,stock, berat,tgl_masuk, gambar, diskon)
-	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$foto','$diskon')";
+	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$unic','$diskon')";
 	$hasil = $conn->query($query);
 }
 
