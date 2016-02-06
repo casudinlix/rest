@@ -1,5 +1,6 @@
 <?php 
 require '../setting/server.php';
+
 $id =$_POST['id'];
 
 $foto= $_FILES['foto']['name'];

@@ -1,6 +1,7 @@
 <?php 
 include_once '../../setting/server.php';
 include_once '../../setting/session.php';
+include_once '../menu/atas.php';
 $sql = "SELECT * FROM produk ORDER BY id_produk";
 $query = $conn->query($sql);
 $x =0;
@@ -36,6 +37,7 @@ $x =0;
 		<th colspan="" rowspan="" headers="" scope="">Gambar</th>
 		<th colspan="" rowspan="" headers="" scope="">Terjual</th>
 		<th colspan="" rowspan="" headers="" scope="">Diskon</th>
+		<th colspan="" rowspan="" headers="" scope="">Aksi</th>
 		</tr>
 
 		<tbody>
@@ -59,8 +61,9 @@ $x++;
 <td colspan="" rowspan="" headers=""><img src="../../produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['terjual']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['diskon']; ?></td>
+<?php echo "<td colspan='' rowspan='' headers=''><a href=detail.php?id=".$data['id_produk']. ">Detail</a></td>";
 
-
+?>
 			</tr>
 		</tbody>
 
@@ -69,6 +72,7 @@ $x++;
 
 }
 }
+$conn->close();
 ?>
 	</table>
 

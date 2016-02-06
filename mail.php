@@ -69,7 +69,7 @@ define('ROOT', 'http://127.0.0.1/TA/');
 		
 		
 		$kode	= md5(uniqid(rand(),TRUE));
-		$konfirmasi = "INSERT INTO login (username,email,nama,password,confirm,kode,role,foto) VALUES('$username','$email','$nama','$pass1','N','$kode','2','../foto/avatar.png')";
+		$konfirmasi = "INSERT INTO login (username,email,nama,password,confirm,kode,role,foto) VALUES('$username','$email','$nama','$pass1','N','$kode','2','avatar.png')";
 			if ($conn->query($konfirmasi)===TRUE) {
 				
 			}else{
