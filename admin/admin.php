@@ -15,7 +15,7 @@ include_once '../setting/session.php';
 
 include_once 'menu/atas.php';	 	
 	  ?>
-	<a href="../logout.php">Keluar</a>
+	
 	
 	
 

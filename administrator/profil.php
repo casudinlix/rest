@@ -22,9 +22,9 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
  	<link rel="stylesheet" href="">
  </head>
  <body>
- <img src="../foto/<?php echo $data['foto'];?>" width="200px" height="200px"/>
+ 
  <form action="../lib/update_u.php" method="POST" accept-charset="utf-8">
- 	
+ 	<img src="foto/<?php echo $data['foto'];?>" width="200px" height="200px"/>
  	<table>
 <tr>
 <td>ID &nbsp;:&nbsp; <?php echo $data['id']; ?> </td>
@@ -34,10 +34,10 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
 
 
 <tr>
-<td>Nama Lengkap Anda :<input type="teks" name="nama" value=<?php echo $data['nama'] ?> disabled> </td>
+<td>Nama Lengkap Anda :<input type="teks" name="nama" value="<?php echo $data['nama'] ?>" disabled> </td>
 </tr>
 <tr>
-<td>Email :<input type="text" name="email" value=<?php echo $data['email'] ?> disabled> </td>
+<td>Email :<input type="text" name="email" value="<?php echo $data['email'] ?>" disabled> </td>
 </tr>
 <tr>
 <td>Alamat :<input type="text" name="alamat" value="<?php echo $data['alamat'] ?>" disabled> </td>
@@ -61,7 +61,7 @@ $query_pelanggan = "SELECT * FROM login WHERE id='".$_SESSION['id']."'LIMIT 1";
  	?>
  	
  </form>
- 	<a href="user.php" title="HOME">HOME</a>
+ 	<a href="admin.php" title="HOME">HOME</a>
  	<a href="../logout.php" title="Keluar">Logout</a>
  </body>
  </html>
