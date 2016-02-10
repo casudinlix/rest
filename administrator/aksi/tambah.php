@@ -74,14 +74,20 @@ include 'fungsi.php';
 <tr><td colspan="" rowspan="" headers="">Deskripsi</td>
 <td><textarea name="deskripsi" placeholder="Deskripsi"></textarea></td>
 </tr>
-<tr><td colspan="" rowspan="" headers="">Harga</td>
+<!--<tr><td colspan="" rowspan="" headers="">Harga</td>
 <td><input type="text" name="harga" placeholder="Harga"></td>
-</tr>
-<tr><td colspan="" rowspan="" headers="">Stock</td>
+</tr>-->
+<!--<tr><td colspan="" rowspan="" headers="">Stock</td>
 <td><input type="text" name="stock" placeholder="Input Stock"></td>
-</tr>
+</tr>-->
 <tr><td colspan="" rowspan="" headers="">Berat Barang</td>
 <td><input type="text" name="berat" placeholder="> 1Kg"></td>
+</tr>
+<tr><td colspan="" rowspan="" headers="">Qty Minimum</td>
+<td><input type="teks" name="qtymin"></td>
+</tr>
+<tr><td colspan="" rowspan="" headers="">Qty Max</td>
+<td><input type="teks" name="qtymax" placeholder=""></td>
 </tr>
 <tr><td colspan="" rowspan="" headers="">Tanggal Masuk</td>
 <td><input type="date" name="tgl" value="<?php echo $tglsekarang; ?>" readonly></td>
@@ -89,12 +95,10 @@ include 'fungsi.php';
 <tr><td colspan="" rowspan="" headers="">Gambar</td>
 <td><input type="file" name="gambar"></td>
 </tr>
-<tr><td colspan="" rowspan="" headers="">Terjual</td>
-<td><input type="teks" name="terjual" value="0" readonly="" =""></td>
+<tr><td colspan="" rowspan="" headers="">Harga</td>
+<td><input type="teks" name="harga" placeholder=""></td>
 </tr>
-<tr><td colspan="" rowspan="" headers="">Diskon</td>
-<td><input type="teks" name="diskon" placeholder="Input Jika Ada Diskon"></td>
-</tr>
+
 </table>
 <input type="submit" name="save" value="Simpan"/>
 </form>

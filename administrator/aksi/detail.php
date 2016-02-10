@@ -2,7 +2,7 @@
 include_once '../../setting/server.php';
 include_once '../../setting/session.php';
 $id = $_GET['id'];
- $detail = "SELECT * FROM produk WHERE id_produk='$id'";
+ $detail = "SELECT * FROM m_produk WHERE id_produk='$id'";
 $query = $conn->query($detail);
 $row=$query->fetch_assoc();
 	

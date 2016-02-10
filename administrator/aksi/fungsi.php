@@ -4,10 +4,10 @@
 
 
 function random_char( $panjang ) { 
-	$karakter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+	$karakter = 'P'; 
 	$string = ''; 
 	for ( $i = 0; $i < $panjang; $i++ ) { 
-		$pos = rand( 0, strlen( $karakter ) - 1 ); 
+		$pos = strlen( $karakter ) - 1 ; 
 		$string .= $karakter{$pos}; 
 	} 
 return $string;
@@ -23,14 +23,14 @@ $get_3_number_of_year = substr( $years,-3 ); // mengambil 3 angka dari sebelah k
 * Query untuk mengambil 1 baris data berdasarkan id / kode yg terakhir
 * RIGHT(kd_barang,3) maksudnya mengambil 3 angka dari sebelah kanan diurutkan berdasarkan kode tsb secara Descending
 */
-$get_data = $conn->query("SELECT RIGHT(id_produk,3) FROM produk ORDER BY RIGHT(id_produk,3) DESC" );
+$get_data = $conn->query("SELECT RIGHT(id_produk,2) FROM m_produk ORDER BY RIGHT(id_produk,2) DESC" );
 
 $check_data = $get_data->num_rows;
 $fetch_data = $get_data->fetch_array();
 $maxid = $fetch_data[0];
 
 // MEMBUAT CUSTOM KODE BAGIAN DEPAN
-$custom_code = random_char(3) . $get_3_number_of_year . '-'; // 7 karakter custom code dari sebelah kiri
+$custom_code = random_char(1) . $get_3_number_of_year . '-'; // 7 karakter custom code dari sebelah kiri
 
 
 if ( empty( $check_data ) ) { // Mengecek apakah di dlm database tidak ada data maka

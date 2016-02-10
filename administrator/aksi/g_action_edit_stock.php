@@ -20,7 +20,7 @@ $id =$_GET['id'];
 	$query2=$conn->query("UPDATE stock SET stock='$stock' WHERE id_produk='$kode'");
 if ($hasil) {
 
-	echo "<script>window.alert('Data Berhasil Disimpan');</script>";
+	echo "<script>window.alert('Data Berhasil Rubah');</script>";
 	echo "<script>window.location = 'produk.php';</script>";
 }else {
 	echo "GAGAL".$query."<br>".$conn->error;

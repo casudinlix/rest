@@ -1,7 +1,7 @@
 <?php 
-include_once '../../setting/server.php';
-include_once '../../setting/session.php';
-include_once '../menu/atas.php';
+include_once '../setting/server.php';
+include_once '../setting/session.php';
+
 $batas   = 5;
 $halaman = @$_GET['halaman'];
 if(empty($halaman)){
@@ -11,10 +11,10 @@ if(empty($halaman)){
 else{ 
   $posisi  = ($halaman-1) * $batas; 
 }
-$sql = "SELECT * FROM m_produk LIMIT $posisi,$batas";
+$sql = "SELECT * FROM g_produk LIMIT $posisi,$batas";
 $query = $conn->query($sql);
 
-include_once 'fungsi.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ include_once 'fungsi.php';
 	<link rel="stylesheet" href="">
 </head>
 <body>
-<a href="tambah.php" title="Tambah">Tambah Barang</a>
+<a href="cari_produk.php" title="Tambah">Tambah Barang</a>
 <center>
 	<table border="1">
 	<thead>
@@ -35,19 +35,21 @@ include_once 'fungsi.php';
 	<tr>
 		<th colspan=" " rowspan="" headers="" scope="">NO</th>
 		<th colspan=" " rowspan="" headers="" scope="">Kode Barang</th>
-		<th colspan="" rowspan="" headers="" scope="">Nama Barang</th>
+		<th colspan="" rowspan="" headers="" scope="">Deskripsi</th>
 		<th colspan="" rowspan="" headers="" scope="">Jenis Barang</th>
 		<th colspan="" rowspan="" headers="" scope="">Kategori Barang</th>
-		<th colspan="" rowspan="" headers="" scope="">Merk Barang</th>
-		<th colspan="" rowspan="" headers="" scope="">Deskripsi Barang</th>
-		<th colspan="" rowspan="" headers="" scope="">Berat Barang</th>
-		<th colspan="" rowspan="" headers="" scope="">QTY min</th>
-		<th colspan="" rowspan="" headers="" scope="">QTY MAX</th>
+		<th colspan="" rowspan="" headers="" scope="">Stock</th>
+		<th colspan="" rowspan="" headers="" scope="">Harga</th>
+		
+		<th colspan="" rowspan="" headers="" scope="">Merk</th>
 		<th colspan="" rowspan="" headers="" scope="">Tanggal Masuk</th>
-		<th colspan="" rowspan="" headers="" scope="">Gambar</th>
 		
 		
-		<th colspan="" rowspan="" headers="" scope="">Aksi</th>
+		<th colspan="" rowspan="" headers="" scope="">Lokasi</th>
+		<th colspan="" rowspan="" headers="" scope="">AKSI</th>
+		
+		
+		
 		</tr>
 
 		<tbody>
@@ -59,19 +61,17 @@ if ($query->num_rows) {
 
   	?>
   <td colspan="" rowspan="" headers=""><?php echo $x; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['id_produk']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['nama_produk']; ?></td>
+<td colspan="" rowspan="" headers=""><?php echo $data['kode']; ?></td>
+<td colspan="" rowspan="" headers=""><?php echo $data['deskripsi']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['jenis']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['kategori']; ?></td>
+<td colspan="" rowspan="" headers=""><?php echo $data['qty']; ?></td>
+<td colspan="" rowspan="" headers=""><?php echo $data['harga']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['merk']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['deskripsi']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['berat']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['qty_min']; ?></td>
-<td colspan="" rowspan="" headers=""><?php echo $data['qty_max']; ?></td>
-
 <td colspan="" rowspan="" headers=""><?php echo $data['tgl_masuk']; ?></td>
-<td colspan="" rowspan="" headers=""><img src="../../produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
-<td colspan="" rowspan="" headers=""><a href="edit.php?id=<?php echo $data['id_produk'];?>"</a>Edit<br/>
+<td colspan="" rowspan="" headers=""><?php echo $data['lokasi']; ?></td>
+
+<td colspan="" rowspan="" headers=""><a href="aksi/g_edit_stock.php?id=<?php echo $data['kode'];?>"</a>Edit<br/>
 <a href="action_hapus.php?id=<?php echo $data['id_produk'];?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Hapus</a></td>
 
 <?php 
@@ -90,7 +90,7 @@ if ($query->num_rows) {
 ?>
 	</table>
 <?php
-$sql2 = $conn->query("SELECT * FROM m_produk");
+$sql2 = $conn->query("SELECT * FROM g_produk");
 $jmldata = $sql2->num_rows;
 $jmlhalaman =ceil($jmldata/$batas);
 ?>
@@ -98,7 +98,7 @@ Halaman:
 <?php
 for($i=1;$i<=$jmlhalaman;$i++)
 if ($i != $halaman){
- echo " <a href=\"produk.php?halaman=$i\">$i</a> | ";
+ echo " <a href=\"g_produk.php?halaman=$i\">$i</a> | ";
 }
 else{ 
  echo " <b>$i</b> | "; 

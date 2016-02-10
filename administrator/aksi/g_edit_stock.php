@@ -13,17 +13,17 @@ $tanggal1 = date('d/m/Y H:i:s');
 <body>
 <?php
 $kode =$_GET['id'];
-$sql=$conn->query("SELECT * FROM m_produk WHERE id_produk='$kode'");
+$sql=$conn->query("SELECT * FROM g_produk WHERE kode='$kode'");
 $row = $sql->fetch_array();
 ?>
-<form method="POST" action="action_edit.php" enctype="multipart/form-data"/>
+<form method="POST" action="g_action_edit_stock.php" enctype="multipart/form-data"/>
 <center><table>
 <tr>
 <td colspan="" rowspan="" headers="">Kode</td>
 <td><input type="text" name="kode" value="<?php echo $kode;?>" readonly></td>
 </tr>
-<tr><td colspan="" rowspan="" headers="">Nama Produk</td>
-<td><input type="text" name="nama" value="<?php echo $row['nama_produk']; ?>"></td>
+<tr><td colspan="" rowspan="" headers="">Deskripsi</td>
+<td><textarea name="deskripsi" value="<?php echo $row['deskripsi']; ?>"><?php echo $row['deskripsi']; ?></textarea></td>
 </tr>
 <tr><td colspan="" rowspan="" headers="">Jenis</td>
 <td><select name="jenis">
@@ -72,19 +72,7 @@ $row = $sql->fetch_array();
 			?>
 </select></td>
 </tr>
-<tr><td colspan="" rowspan="" headers="">Deskripsi</td>
-<td><textarea name="deskripsi" value="<?php echo $row['deskripsi']; ?>"><?php echo $row['deskripsi']; ?></textarea></td>
-</tr>
 
-<tr><td colspan="" rowspan="" headers="">Berat Barang</td>
-<td><input type="text" name="berat" value="<?php echo $row['berat']; ?>">KG</td>
-</tr>
-<tr><td colspan="" rowspan="" headers="">QTY MIN</td>
-<td><input type="text" name="qtymin" value="<?php echo $row['qty_min']; ?>"></td>
-</tr>
-<tr><td colspan="" rowspan="" headers="">QTY MAX</td>
-<td><input type="text" name="qtymax" value="<?php echo $row['qty_max']; ?>"></td>
-</tr>
 <tr><td colspan="" rowspan="" headers="">Tanggal Masuk</td>
 <td><input type="teks" name="tgl" value="<?php echo $row['tgl_masuk']; ?>" readonly></td>
 </tr>

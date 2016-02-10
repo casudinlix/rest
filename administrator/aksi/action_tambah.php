@@ -10,33 +10,33 @@ $id =$_GET['id'];
 	$kategori = $_POST['kategori'];
 	$merk = $_POST['merk'];
 	$deskripsi = $_POST['deskripsi'];
-	$harga = $_POST['harga'];
-	$stock = $_POST['stock'];
+	$qtymin = $_POST['qtymin'];
+	$qtymax = $_POST['qtymax'];
 	$berat = $_POST['berat'];
 	$tgl_masuk = $_POST['tgl'];
-	$terjual =$_POST['terjual'];
-	$diskon =$_POST['diskon'];
+	$harga =$_POST['harga'];
+	//$diskon =$_POST['diskon'];
 $foto= $_FILES['gambar']['name'];
 $acak = rand(1,99);
 
 $unic = $acak.$foto;
-$u=$conn->query("SELECT * FROM produk WHERE id_produk='$id'");
+$u=$conn->query("SELECT * FROM m_produk WHERE id_produk='$id'");
 
 $us=$u->fetch_array();
 if(file_exists("../../produk/".$us['gambar'])){
 	unlink("../../produk/".$us['gambar']);
 	move_uploaded_file($_FILES['gambar']['tmp_name'],"../../produk/".$acak.$_FILES['gambar']['name']);
-	$query = "INSERT INTO produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi,harga_jual ,stock, berat,tgl_masuk, gambar, diskon)
-	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$unic','$diskon')";
-	$query2 = $conn->query("INSERT INTO stock values('$kode','$stock',NOW())");
+	$query = "INSERT INTO m_produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi, berat, qty_min, qty_max,tgl_masuk, harga,gambar)
+	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$berat','$qtymin','$qtymax',NOW(),'$harga','$unic')";
+	//$query2 = $conn->query("INSERT INTO stock values('$kode','$stock',NOW())");
 	$hasil = $conn->query($query);
 
 }else{
 	move_uploaded_file($_FILES['gambar']['tmp_name'], "../../produk/".$acak.$_FILES['gambar']['name']);
-	$query = "INSERT INTO produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi,harga_jual ,stock, berat,tgl_masuk, gambar, diskon)
-	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$harga','$stock','$berat',NOW(),'$unic','$diskon')";
+	$query = "INSERT INTO m_produk(id_produk, nama_produk, jenis, kategori,merk,deskripsi, berat, qty_min, qty_max,tgl_masuk,harga, gambar)
+	VALUES('$kode','$nama','$jenis','$kategori','$merk','$deskripsi','$berat','$qtymin','qtymax',NOW(),'$harga','$unic')";
 	$hasil = $conn->query($query);
-	$query2 = "INSERT INTO stock (id_produk,stock,last)values('$kode','$stock',NOW())";
+	//$query2 = "INSERT INTO stock (id_produk,stock,last)values('$kode','$stock',NOW())";
 }$hasil2 =$conn->query($query2);
 
 	if ($hasil) {
