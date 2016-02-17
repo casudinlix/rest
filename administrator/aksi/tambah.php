@@ -60,11 +60,11 @@ include 'fungsi.php';
 <td><select name="merk">
 	<option value="">---</option>
 	<?php
-		$ambil = $conn->query("SELECT * FROM merk ORDER BY nama ASC");
+		$ambil = $conn->query("SELECT * FROM merk ORDER BY nama_merk ASC");
 		if($ambil->num_rows > 0){
 			while ( $data =$ambil->fetch_array()) {?>
 
-				<option value="<?php echo $data['nama'];?>"><?php echo $data['nama'] ?></option>';
+				<option value="<?php echo $data['nama_merk'];?>"><?php echo $data['nama_merk'] ?></option>';
 			<?php
 			}
 		}
@@ -88,6 +88,9 @@ include 'fungsi.php';
 </tr>
 <tr><td colspan="" rowspan="" headers="">Qty Max</td>
 <td><input type="teks" name="qtymax" placeholder=""></td>
+</tr>
+<tr><td colspan="" rowspan="" headers="">Stock</td>
+<td><input type="teks" name="stock" placeholder=""></td>
 </tr>
 <tr><td colspan="" rowspan="" headers="">Tanggal Masuk</td>
 <td><input type="date" name="tgl" value="<?php echo $tglsekarang; ?>" readonly></td>

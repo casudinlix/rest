@@ -1,5 +1,6 @@
 <?php
-include_once 'setting/server.php';
+
+
 $batas   = 5;
 $halaman = @$_GET['halaman'];
 if(empty($halaman)){
@@ -23,7 +24,7 @@ $query = $conn->query($sql);
   <link rel="stylesheet" href="">
 </head>
 <body >
-<a href="login.php" title="Login">Login</a>
+
 <center>
   <table border="1">
   <thead>
@@ -67,8 +68,8 @@ if ($query->num_rows) {
 <td colspan="" rowspan="" headers=""><?php echo $data['stock']; ?></td>
 <td colspan="" rowspan="" headers="">Rp-,<?php echo $data['harga']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['tgl_masuk']; ?></td>
-<td colspan="" rowspan="" headers=""><img src="produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
-<td colspan="" rowspan="" headers=""><a href="katalog/katalog.php?id=<?php echo $data['id_produk'];?>"</a>Detail<br/>
+<td colspan="" rowspan="" headers=""><img src="../produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
+<td colspan="" rowspan="" headers=""><a href="produk/detail.php?id=<?php echo $data['id_produk'];?>"</a>Detail<br/>
 
 <?php 
 //echo "<td colspan='' rowspan='' headers=''><a href=edit.php?id=".$data['id_produk']. ">Edit</a>~&nbsp;<a href=action_hapus.php?id=".$data['id_produk']. ">Hapus</a></td>";

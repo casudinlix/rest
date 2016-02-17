@@ -61,11 +61,11 @@ $row = $sql->fetch_array();
 <td><select name="merk">
 	<option value="<?php echo $row['merk']; ?>"><?php echo $row['merk']; ?></option>
 	<?php
-		$ambil = $conn->query("SELECT * FROM merk ORDER BY nama ASC");
+		$ambil = $conn->query("SELECT * FROM merk ORDER BY nama_merk ASC");
 		if($ambil->num_rows > 0){
 			while ( $data =$ambil->fetch_array()) {?>
 
-				<option value="<?php echo $data['nama'];?>"><?php echo $data['nama']; ?></option>';
+				<option value="<?php echo $data['nama_merk'];?>"><?php echo $data['nama_merk']; ?></option>';
 			<?php
 			}
 		}
@@ -84,6 +84,9 @@ $row = $sql->fetch_array();
 </tr>
 <tr><td colspan="" rowspan="" headers="">QTY MAX</td>
 <td><input type="text" name="qtymax" value="<?php echo $row['qty_max']; ?>"></td>
+</tr>
+<tr><td colspan="" rowspan="" headers="">Stock</td>
+<td><input type="text" name="stock" value="<?php echo $row['stock']; ?>"></td>
 </tr>
 <tr><td colspan="" rowspan="" headers="">Tanggal Masuk</td>
 <td><input type="teks" name="tgl" value="<?php echo $row['tgl_masuk']; ?>" readonly></td>

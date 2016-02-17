@@ -2,6 +2,7 @@
 // memulai session
 session_start();
 
+
 if (isset($_SESSION['confirm'])){
 
 	if ($_SESSION['confirm']=="N") {
@@ -16,7 +17,7 @@ if (isset($_SESSION['role']))
 
    	echo "<script>window.location.assign('administrator/administrator.php')</script>";
    }
-   // jika kondisi level user maka akan diarahkan ke halaman lain
+   // jika kondisi level user maka akan diarahkan ke halaman user 
    if ($_SESSION['role'] == "2")
    {
        echo "<script>window.location.assign('user/user.php')</script>";
@@ -28,6 +29,9 @@ if ($_SESSION['role'] == "3") {
 }
 if (!isset($_SESSION['role']))
 {
- echo "<script>window.location.assign('index.php')</script>";
+ echo "<script>window.alert('User Dan Password Anda Kurang Tepat');</script>";
+echo "<script>window.location ='login.php=Error';</script>";
+
+ //echo "<script>window.location.assign('index.php')</script>";
 }
  ?>

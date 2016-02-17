@@ -1,1 +1,2 @@
-<h1><a href="index.php">Silahkan Login terlebih dahulu</a>
+<script>window.alert('Anda Harus Login Sebelum Melakukan Transaksi Ini');</script>";
+<script>window.location = 'login.php';</script>";

@@ -12,10 +12,11 @@ $id =$_GET['id'];
 	$deskripsi = $_POST['deskripsi'];
 	$qtymin = $_POST['qtymin'];
 	$qtymax = $_POST['qtymax'];
+	$stock = $_POST['stock'];
 	$berat = $_POST['berat'];
 	
 
-	$query = "UPDATE m_produk SET nama_produk='$nama', jenis='$jenis', kategori='$kategori', merk='$merk', deskripsi='$deskripsi' , berat='$berat' , qty_min='$qtymin', qty_max='$qtymax' WHERE id_produk='$kode'";
+	$query = "UPDATE m_produk SET nama_produk='$nama', jenis='$jenis', kategori='$kategori', merk='$merk', deskripsi='$deskripsi' , berat='$berat' , qty_min='$qtymin', qty_max='$qtymax',stock='$stock' WHERE id_produk='$kode'";
 	$hasil = $conn->query($query);
 	$query2=$conn->query("UPDATE stock SET stock='$stock' WHERE id_produk='$kode'");
 if ($hasil) {

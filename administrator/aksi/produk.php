@@ -25,7 +25,7 @@ include_once 'fungsi.php';
 	<title>Data Produk</title>
 	<link rel="stylesheet" href="">
 </head>
-<body>
+<body >
 <a href="tambah.php" title="Tambah">Tambah Barang</a>
 <center>
 	<table border="1">
@@ -43,6 +43,8 @@ include_once 'fungsi.php';
 		<th colspan="" rowspan="" headers="" scope="">Berat Barang</th>
 		<th colspan="" rowspan="" headers="" scope="">QTY min</th>
 		<th colspan="" rowspan="" headers="" scope="">QTY MAX</th>
+		<th colspan="" rowspan="" headers="" scope="">Stock</th>
+		<th colspan="" rowspan="" headers="" scope="">Harga</th>
 		<th colspan="" rowspan="" headers="" scope="">Tanggal Masuk</th>
 		<th colspan="" rowspan="" headers="" scope="">Gambar</th>
 		
@@ -58,6 +60,7 @@ if ($query->num_rows) {
   while ($data = $query->fetch_array()) { 
 
   	?>
+
   <td colspan="" rowspan="" headers=""><?php echo $x; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['id_produk']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['nama_produk']; ?></td>
@@ -68,7 +71,8 @@ if ($query->num_rows) {
 <td colspan="" rowspan="" headers=""><?php echo $data['berat']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['qty_min']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['qty_max']; ?></td>
-
+<td colspan="" rowspan="" headers=""><?php echo $data['stock']; ?></td>
+<td colspan="" rowspan="" headers="">Rp-,<?php echo $data['harga']; ?></td>
 <td colspan="" rowspan="" headers=""><?php echo $data['tgl_masuk']; ?></td>
 <td colspan="" rowspan="" headers=""><img src="../../produk/<?php echo $data['gambar'];?>" alt="Produck" height=102></td>
 <td colspan="" rowspan="" headers=""><a href="edit.php?id=<?php echo $data['id_produk'];?>"</a>Edit<br/>
