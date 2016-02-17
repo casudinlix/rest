@@ -3,7 +3,8 @@ include "../../setting/server.php";
 include "../../setting/session.php";
 
 $idt = $_SESSION['nama'];
-$query = $conn->query("SELECT * FROM order_sementara ot INNER JOIN produk p ON ot.id_produk=p.id_produk WHERE username = '$idt'");
+$id=$_GET['id'];
+$query = $conn->query("SELECT * FROM order_sementara  WHERE username = '$idt' AND id_order_smt='$id'");
 
 if ($query->num_rows == 0) {
 	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
