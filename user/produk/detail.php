@@ -21,7 +21,7 @@ $row=$query->fetch_assoc();
 	<table>
 	<tr>
 
-		<td>KODE :<input type="teks" name="id" value="<?php echo $row['id_produk']; ?>" disabled></td>
+		<td>KODE :<input type="teks" name="kode" value="<?php echo $row['id_produk']; ?>" disabled></td>
 		</tr>
 <tr>
 		<td>Nama Produk :<input type="teks" name="id" value="<?php echo $row['nama_produk']; ?>" disabled></td>
@@ -39,10 +39,10 @@ $row=$query->fetch_assoc();
 		<td>Deskripsi Produk :<textarea name="deskripsi" disabled><?php echo $row['deskripsi']; ?></textarea></td>
 </tr>
 <tr>
-		<td>Harga Produk :<input type="teks" name="id" value="<?php echo $row['harga']; ?>" disabled></td>
+		<td>Harga Produk :<input type="teks" name="harga" value="<?php echo $row['harga']; ?>" disabled></td>
 </tr>
 <tr>
-		<td>Stock Produk :<input type="teks" name="id" value="<?php echo $row['stock']; ?>" disabled></td>
+		<td>Stock Produk :<input type="teks" name="qty" value="<?php echo $row['stock']; ?>" disabled></td>
 </tr>
 <tr>
 		<td>Berat Produk :<input type="teks" name="id" value="<?php echo $row['berat']; ?>" disabled></td>
@@ -55,7 +55,7 @@ $row=$query->fetch_assoc();
 
 
 </table>
-<a href=aksi.php?act=add&amp;id=<?php echo $row['id_produk']; ?>><input type="button" name="beli" value="Beli"></a></td>
+<a href=aksi.php?id=<?php echo $row['id_produk']; ?>><input type="button" name="beli" value="Beli"></a></td>
 	</form>
 	<?php //pending buat transaksi sementara ?>
 
