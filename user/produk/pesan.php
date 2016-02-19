@@ -1,18 +1,25 @@
 <?php
 include "../../setting/server.php";
 include "../../setting/session.php";
-
+error_reporting(0);
 $idt = $_SESSION['nama'];
 $id=$_GET['id'];
-$query = $conn->query("SELECT * FROM order_sementara  WHERE username = '$idt' AND id_order_smt='$id'");
-
+/*$query = $conn->query("SELECT * FROM order_user WHERE username ='$idt' AND id_order='$id'");
 if ($query->num_rows == 0) {
 	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
 	echo "<script>window.location = '../user.php';</script>";
 }
+*/
+
+ //$detail = "SELECT * FROM order_user WHERE username='$idt'";
+//$query = $conn->query($detail);
+
+$query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'AND order_user.id_produk=m_produk.id_produk ");
+
+
 
 ?>
-<form method="post" action="save_purchase.php">
+<form method="post" action="save_pesan.php">
 	<div class="row-isi">
 		<table width="95%" align="center">
 			<tr>
@@ -20,75 +27,64 @@ if ($query->num_rows == 0) {
 			</tr>
 			<tr>
 				<td>
-					<a href="../aplikasi/index.php"><input type="button" value="Beli Lagi" class="button round"></a>
+					<a href="../user.php"><input type="button" value="Beli Lagi" class="button round"></a>
 				</td>
 			</tr>
 		</table>
-		<table border="1" class="border" width="95%" align="center">
+
+		<table border="1"  width="" align="center">
 			<tr bgcolor="#75D1FF">
-				<th width="25px">No</th>
-				<th width="305px">Nama Produk</th>
-				<th width="190px">Harga Satuan</th>
-				<th width="95px">Jumlah</th>
-				<th width="190px">Sub Total</th>
+				<th width="">No</th>
+				
+				<th width="">ID Produk</th>
+				<th width="">Nama produk</th>
+				<th width="">Pembeli</th>
+				<th width="">Jumlah</th>
+				<th width="">Harga</th>
+				<th width="">Sub Total</th>
+				<th width="">Status</th>
+				<th width="">Aksi</th>
+
 			</tr>
+			<tbody>
 			<?php
-				$no = 1;
-				$total = 0;
-			?>
-			<tr>
-		        <?php while ($data = $query->fetch_assoc()): ?>
+$no = 0;
+				while ($row=$query->fetch_array()) {
+					
+					$no++;
+	$subtotal = $row['qty'] * $row['harga'];
+       $total = $total + $subtotal;
+		
+					?>
+					<tr><td colspan="" rowspan="" headers=""><?php echo $no; ?></td>
+					
 
-				<input type="hidden" name="id[]" value="<?php echo $data['id_produk']; ?>" />
-				<td align="center"><?php echo $no; ?></td>
-				<td style="padding-left:5px;"><?php echo $data['nama_produk']; ?>&nbsp;<?php echo $data['jenis']; ?></td>
-				<td>Rp. <input readonly type="text" class="input" style="width:135px;" value="<?php echo price($data['price']); ?>"></td>
+					<td colspan="" rowspan="" headers=""><?php echo $row['id_produk']; ?></td>
+					<td colspan="" rowspan="" headers=""><?php echo $row['nama_produk']; ?></td>
 
-				<?php
-					$sub_total = $data['harga'] * $data['qty'];
-			        $total += $sub_total;
-				?>
+					<td colspan="" rowspan="" headers=""><?php echo $row['username']; ?></td>
+					<td colspan="" rowspan="" headers=""><?php echo $row['qty']; ?></td>
+					
+					<td colspan="" rowspan="" headers="">Rp-,<?php echo $row['harga'];?> </td>
 
-				<td align="center">
-					<?php if ($data['qty'] > 1): ?>
-						<a class="href minus" href="../aplikasi/aksi.php?act=min&amp;id=<?php echo $data['id_produk']; ?>&amp;qty=<?php echo $data['qty'] ?>"></a>
-					<?php else: ?>
-						<a class="href minus disabled"></a>
-					<?php endif ?>
-					<input name="qty[]" readonly type="text" class="input" size="1" style="text-align:center; width:38px; padding-left:0;" value="<?php echo $data['qty']; ?>"/>
-					<?php if ($data['qty'] < $data['stock']): ?>
-						<a class="href plus" href="../aplikasi/aksi.php?act=plus&amp;id=<?php echo $data['id_produk']; ?>&amp;qty=<?php echo $data['qty'] ?>"></a>
-					<?php else: ?>
-						<a class="href plus disabled"></a>
-					<?php endif ?>
-				</td>
-				<td>
-					Rp. <input style="width:130px;" type="text" class="input" readonly value="<?php echo harga($sub_total); ?>">
+						<td colspan="" rowspan="" headers="">Rp-,<?php echo $subtotal; ?></td>
+						<td colspan="" rowspan="" headers=""><?php echo $row['status']; ?></td>
+						<td colspan="" rowspan="" headers=""><a href="save_pesan.php?id=<?php echo $row['id_produk']; ?>" title="">Konfirmasi Pembayaran</a>
+							|| <a href="hapus_pesan.php?id=<?php echo $row['id_produk']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Hapus</a>
+						</td>
 
-					<a href="../aplikasi/aksi.php?act=del&amp;id=<?php echo $data['id_produk']; ?>" style="vertical-align: -3px;">
-						<img src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/shop/image/icon/delete.png' ?>" width ="13px">
-					</a>
-				</td>
-			</tr>
-			<?php
-				$no++;
-				endwhile
-			?>
-			<tr>
-				<td align="right" colspan="4"><b style="margin-right: 3px;">Total Belanja</b></td>
-				<td><b>Rp.</b> <input style="font-weight: bold; width:130px;" name="total" type="text" class="input" readonly value="<?php echo harga($total); ?>"></td>
-			</tr>
-			<tr>
-				<td colspan="5" align="center">
-					<input type="submit" value="Lanjutkan" class="button round">
-					<a href="../aplikasi/aksi.php?act=clear" class="button round error">Batal</a>
-				</td>
-			</tr>
-		</table>
-		<table width="100%">
-			<tr>
-				<td><?php include "../footer/footer.php" ?></td>
-			</tr>
-		</table>
-	</div>
+
+					</tr>
+
+			
+							
+<?php } 
+
+?>
+		<td align="right" colspan="4"><b style="margin-right: 3px;">Total Belanja</b></td>
+
+<td><b>Rp.</b> <?php echo $total;?></td>		
+</tbody>
+			</table>
+			
 </form>
