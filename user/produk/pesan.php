@@ -69,8 +69,7 @@ $no = 0;
 
 						<td colspan="" rowspan="" headers="">Rp-,<?php echo $subtotal; ?></td>
 						<td colspan="" rowspan="" headers=""><?php echo $row['status']; ?></td>
-						<td colspan="" rowspan="" headers=""><a href="save_pesan.php?id=<?php echo $row['id_produk']; ?>" title="">Konfirmasi Pembayaran</a>
-							|| <a href="hapus_pesan.php?id=<?php echo $row['id_produk']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Hapus</a>
+							<td><a href="hapus_pesan.php?id=<?php echo $row['id_produk']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Hapus</a>
 						</td>
 
 
@@ -83,7 +82,9 @@ $no = 0;
 ?>
 		<td align="right" colspan="4"><b style="margin-right: 3px;">Total Belanja</b></td>
 
-<td><b>Rp.</b> <?php echo $total;?></td>		
+<td align="right" colspan="3"><b>Rp.</b> <?php echo $total;?></td>		
+<td><input type="submit" name="simpan" value="Lanjutkan"></td>
+
 </tbody>
 			</table>
 			
