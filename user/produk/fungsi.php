@@ -14,44 +14,19 @@ return $string;
 }
 
 
-$years = date( 'Y' ); // tahun
-$get_3_number_of_year = substr($years,- 6); // mengambil 3 angka dari sebelah kanan pada tahun sekarang
+$encript = md5("ORDER");
+$regex = preg_replace("/[^A-Za-z]/", '', $encript);
+$alfa = substr($regex, 0, 5);
+$kode = strtoupper($alfa);
+
+$kdauto = $conn->query("SELECT max(id_order) AS last FROM order_detail WHERE id_order LIKE '$kode%'");
+$result = $kdauto->fetch_array();
+$lastNoOrder = $result['last'];
+$lastNoUrut = substr($lastNoOrder, 5, 3);
+$nextNoUrut = $lastNoUrut + 1;
+$nextNoOrder = $kode.sprintf('%03s', $nextNoUrut);
 
 
-/**
-*
-* Query untuk mengambil 1 baris data berdasarkan id / kode yg terakhir
-* RIGHT(kd_barang,3) maksudnya mengambil 3 angka dari sebelah kanan diurutkan berdasarkan kode tsb secara Descending
-*/
-$get_data = $conn->query("SELECT RIGHT(id_order,2) FROM order_detail ORDER BY RIGHT(id_order,2) DESC" );
 
-$check_data = $get_data->num_rows;
-$fetch_data = $get_data->fetch_array();
-$maxid = $fetch_data[0];
-
-// MEMBUAT CUSTOM KODE BAGIAN DEPAN
-$custom_code = random_char(1) . $get_3_number_of_year . '-'; // 7 karakter custom code dari sebelah kiri
-
-
-if ( empty( $check_data ) ) { // Mengecek apakah di dlm database tidak ada data maka
-  $new_code = 1; // kode dimulai dr 1
-} else { // jika ada data dlm db maka
-  $the_code = substr( $maxid, -7 ); // kode yg ada pd db di pecah dan diambil hannya karakter selain ke 7 custom code tsb. / hannya 3 angka dibagian blkng yg diambil
-  $new_code = $the_code + 1; // 3 angka tsb setelah dipecah akan ditambahkan 1 secara berurutan berdasarkan data yg terakhir
-}
-
-/**
-*
-* Dibawah ini merupakan custom code bagian belakan
-* Saya membuat code bagian belakang hanya untuk menampung ribuan data (3 angka)
-*/
-$kd = ''; // Mendifinisikan nilai variable.
-if ( $new_code >= 1 && $new_code < 10 ) :
- 	$kd .= $custom_code."00".$new_code;
-elseif ( $new_code >= 10 && $new_code < 100 ) :
- 	$kd .= $custom_code."0".$new_code;
-else :
-	$kd .= $custom_code.$new_code; // batas data di db hannya sampai 9999 data
-endif;
 
  ?>

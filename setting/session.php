@@ -23,4 +23,9 @@ if (!isset($_SESSION['role']))
 {
  header('location:../fail.php');
 }
+if(!isset($_SESSION['transaksi'])){
+    $idt = date("YmdHis");
+    $_SESSION['transaksi'] = $idt;
+}
+$idt = $_SESSION['transaksi'];
  ?>

@@ -55,8 +55,8 @@ $row=$query->fetch_assoc();
 
 
 </table>
-<a href=aksi.php?id=<?php echo $row['id_produk']; ?>><input type="button" name="beli" value="Beli"></a></td>
-	</form>
+<a href="aksi.php?act=add&amp;id=<?php echo $row['id_produk']; ?>">BELI</a>
+</form>
 	<?php //pending buat transaksi sementara ?>
 
  </body>

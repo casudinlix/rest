@@ -1,9 +1,11 @@
 <?php
 include "../../setting/server.php";
 include "../../setting/session.php";
-error_reporting(0);
-$idt = $_SESSION['nama'];
-$id=$_GET['id'];
+
+
+
+//$idt = $_SESSION['nama'];
+//$id=$_GET['id'];
 /*$query = $conn->query("SELECT * FROM order_user WHERE username ='$idt' AND id_order='$id'");
 if ($query->num_rows == 0) {
 	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
@@ -15,7 +17,12 @@ if ($query->num_rows == 0) {
 //$query = $conn->query($detail);
 
 $query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'AND order_user.id_produk=m_produk.id_produk ");
-
+//$query = $conn->query("SELECT * FORM order_user ot INNER JOIN m_produk p ON ot.id_produk=p.id_produk WHERE username='$idt'");
+$numRow = $query->num_rows;
+if ($numRow == 0) {
+	echo "<script>window.alert('Keranjang Belanja Anda Masih Kosong');</script>";
+	echo "<script>window.location = '../user.php';</script>";
+}
 
 
 ?>
@@ -36,13 +43,12 @@ $query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'A
 			<tr bgcolor="#75D1FF">
 				<th width="">No</th>
 				
-				<th width="">ID Produk</th>
+				
 				<th width="">Nama produk</th>
-				<th width="">Pembeli</th>
 				<th width="">Jumlah</th>
 				<th width="">Harga</th>
 				<th width="">Sub Total</th>
-				<th width="">Status</th>
+				<th width="">Gambar</th>
 				<th width="">Aksi</th>
 
 			</tr>
@@ -56,19 +62,29 @@ $no = 0;
        $total = $total + $subtotal;
 		
 					?>
+					<input type="hidden" name="id[]" value="<?php echo $row['id_produk'] ?>" >
 					<tr><td colspan="" rowspan="" headers=""><?php echo $no; ?></td>
 					
-
-					<td colspan="" rowspan="" headers=""><?php echo $row['id_produk']; ?></td>
 					<td colspan="" rowspan="" headers=""><?php echo $row['nama_produk']; ?></td>
 
-					<td colspan="" rowspan="" headers=""><?php echo $row['username']; ?></td>
-					<td colspan="" rowspan="" headers=""><?php echo $row['qty']; ?></td>
+					<td align="center">
+					<?php if ($row['qty'] > 1): ?>
+						<a class="href minus" href="aksi.php?act=min&amp;id=<?php echo $row['id_product']; ?>&amp;qty=<?php echo $row['qty'] ?>"></a>
+					<?php else: ?>
+						<a class="href minus disabled"></a>
+					<?php endif ?>
+					<input name="qty[]" readonly type="text" class="input" size="1" style="text-align:center; width:38px; padding-left:0;" value="<?php echo $row['qty']; ?>"/>
+					<?php if ($row['qty'] < $row['stock']): ?>
+						<a class="href plus" href="aksi.php?act=plus&amp;id=<?php echo $row['id_product']; ?>&amp;qty=<?php echo $row['qty'] ?>"></a>
+					<?php else: ?>
+						<a class="href plus disabled"></a>
+					<?php endif ?>
+				</td>
 					
 					<td colspan="" rowspan="" headers="">Rp-,<?php echo $row['harga'];?> </td>
 
 						<td colspan="" rowspan="" headers="">Rp-,<?php echo $subtotal; ?></td>
-						<td colspan="" rowspan="" headers=""><?php echo $row['status']; ?></td>
+						<td colspan="" rowspan="" headers=""><img src="../../produk/<?php echo $row['gambar']; ?>" width="250px"alt=""></td>
 							<td><a href="hapus_pesan.php?id=<?php echo $row['id_produk']; ?>" onclick="return confirm('Apakah anda yakin akan menghapus data ini?')">Hapus</a>
 						</td>
 
