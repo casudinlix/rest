@@ -59,6 +59,7 @@ if (isset($_GET['qty'])) {
 }else{
 	$qty="";
 }
+$idt = $_SESSION['nama'];
 $encript = md5($id);
 $regex = preg_replace("/[^A-Za-z]/", '', $encript);
 $alfa = substr($regex, 0, 5);

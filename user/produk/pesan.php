@@ -15,7 +15,7 @@ if ($query->num_rows == 0) {
 
  //$detail = "SELECT * FROM order_user WHERE username='$idt'";
 //$query = $conn->query($detail);
-
+$idt = $_SESSION['nama'];
 $query = $conn->query("SELECT * FROM order_user, m_produk WHERE username='$idt'AND order_user.id_produk=m_produk.id_produk ");
 //$query = $conn->query("SELECT * FORM order_user ot INNER JOIN m_produk p ON ot.id_produk=p.id_produk WHERE username='$idt'");
 $numRow = $query->num_rows;
@@ -34,7 +34,7 @@ if ($numRow == 0) {
 			</tr>
 			<tr>
 				<td>
-					<a href="../user.php"><input type="button" value="Beli Lagi" class="button round"></a>
+					<a href="../user.php"><input type="button" value="Beli Lagi" ></a>
 				</td>
 			</tr>
 		</table>
@@ -79,9 +79,8 @@ $no = 0;
 					<?php else: ?>
 						<a class="href plus disabled"></a>
 					<?php endif ?>
-				</td>
-					
-					<td colspan="" rowspan="" headers="">Rp-,<?php echo $row['harga'];?> </td>
+				</td><input type="hidden" name="harga[]" value="<?php echo $row['harga'] ?>" >
+					<td>Rp-,<?php echo $row['harga'];?></td>
 
 						<td colspan="" rowspan="" headers="">Rp-,<?php echo $subtotal; ?></td>
 						<td colspan="" rowspan="" headers=""><img src="../../produk/<?php echo $row['gambar']; ?>" width="250px"alt=""></td>
@@ -98,7 +97,7 @@ $no = 0;
 ?>
 		<td align="right" colspan="4"><b style="margin-right: 3px;">Total Belanja</b></td>
 
-<td align="right" colspan="3"><b>Rp.</b> <?php echo $total;?></td>		
+<td align="right" colspan="1"><b>Rp.</b> <?php echo $total;?></td>		
 <td><input type="submit" name="simpan" value="Lanjutkan"></td>
 
 </tbody>
